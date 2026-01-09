@@ -28,12 +28,14 @@ git push origin main
    - Select your GitHub repository
    - If not visible, configure GitHub App permissions
 
-3. **Configure Project**
-   - **Framework Preset**: Vite (auto-detected)
-   - **Root Directory**: `frontend`
-   - **Build Command**: `npm run build` (auto-detected)
-   - **Output Directory**: `dist` (auto-detected)
-   - **Install Command**: `npm install` (auto-detected)
+3. **Configure Project** (IMPORTANT - Set these correctly!)
+   - **Framework Preset**: Vite
+   - **Root Directory**: `frontend` ⚠️ **MUST BE SET TO frontend**
+   - **Build Command**: Leave as default OR `npm run build`
+   - **Output Directory**: Leave as default OR `dist`
+   - **Install Command**: Leave as default OR `npm install`
+   
+   **Note**: Setting Root Directory to `frontend` is crucial. This tells Vercel to build from the frontend subdirectory.
 
 4. **Add Environment Variables**
    Click **"Environment Variables"** and add:
