@@ -31,12 +31,15 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   const login = async (email, password) => {
+    console.log('Auth context: calling login API');
     const response = await authApi.login({ email, password });
+    console.log('Auth context: login API response received', response.data);
     const { token, user: userData } = response.data;
     
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(userData));
     setUser(userData);
+    console.log('Auth context: user state updated', userData);
     
     return userData;
   };

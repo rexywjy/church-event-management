@@ -91,10 +91,13 @@ docker run -d \
    - **Branch**: `main`
 5. Add environment variables:
    - `NODE_ENV` = `production`
-   - `DATABASE_URL` = Your Supabase connection string
+   - `DATABASE_URL` = Your database connection string
    - `JWT_SECRET` = Generate a random 32+ character string
    - `JWT_EXPIRES_IN` = `7d`
    - `FRONTEND_URL` = Your Vercel frontend URL (add after frontend deployment)
+   - `SUPERADMIN_EMAIL` = `admin@socsa.com` (or your preferred email)
+   - `SUPERADMIN_PASSWORD` = Choose a secure password (change from default!)
+   - `SUPERADMIN_NAME` = `System Administrator` (or your preferred name)
 6. Click **Create Web Service**
 
 ### Option 2: Using render.yaml
@@ -115,9 +118,22 @@ After deployment, run migrations:
    npm run migrate
    ```
 
-### Create First Superadmin
+### ✨ Superadmin Auto-Creation (NEW!)
 
-In Render Shell:
+The superadmin account is **automatically created** on first server startup! 
+
+**Default Credentials:**
+- Email: Set via `SUPERADMIN_EMAIL` env var (default: `admin@socsa.com`)
+- Password: Set via `SUPERADMIN_PASSWORD` env var (default: `admin123`)
+- Name: Set via `SUPERADMIN_NAME` env var (default: `System Administrator`)
+
+**⚠️ IMPORTANT SECURITY:**
+1. **Change default credentials** in your environment variables BEFORE deployment
+2. If you used defaults, **change the password immediately** after first login
+3. The auto-creation only runs if NO superadmin exists in the database
+
+**Manual Creation (Optional):**
+If you prefer to create superadmin manually:
 ```bash
 node src/scripts/create-superadmin.js
 ```
@@ -201,6 +217,11 @@ DATABASE_URL=postgresql://user:password@host:port/database
 JWT_SECRET=your-strong-32-char-secret-generated-randomly
 JWT_EXPIRES_IN=7d
 FRONTEND_URL=https://your-app.vercel.app
+
+# Superadmin Auto-Creation (CHANGE THESE FOR SECURITY!)
+SUPERADMIN_EMAIL=admin@socsa.com
+SUPERADMIN_PASSWORD=YourSecurePassword123!
+SUPERADMIN_NAME=System Administrator
 ```
 
 ### Frontend (Vercel)

@@ -144,32 +144,41 @@ export default function EditUser() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      New Password (leave blank to keep current)
-                    </label>
-                    <input
-                      type="password"
-                      name="password"
-                      value={formData.password}
-                      onChange={handleChange}
-                      className="input"
-                      minLength={6}
-                    />
+                    <h4 className="font-semibold text-amber-900 mb-1">🔑 Reset Password</h4>
+                    <p className="text-sm text-amber-700">Leave both fields blank to keep the current password unchanged.</p>
                   </div>
+                  
+                  <div className="grid grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        New Password
+                      </label>
+                      <input
+                        type="password"
+                        name="password"
+                        value={formData.password}
+                        onChange={handleChange}
+                        className="input"
+                        minLength={6}
+                        placeholder="Enter new password"
+                      />
+                    </div>
 
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Confirm New Password
-                    </label>
-                    <input
-                      type="password"
-                      name="confirmPassword"
-                      value={formData.confirmPassword}
-                      onChange={handleChange}
-                      className="input"
-                    />
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                        Confirm New Password
+                      </label>
+                      <input
+                        type="password"
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleChange}
+                        className="input"
+                        placeholder="Confirm new password"
+                      />
+                    </div>
                   </div>
                 </div>
 

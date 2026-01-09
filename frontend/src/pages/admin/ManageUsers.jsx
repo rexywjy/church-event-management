@@ -7,7 +7,7 @@ import { Users, UserPlus } from 'lucide-react';
 
 export default function ManageUsers() {
   const queryClient = useQueryClient();
-  const { isSuperadmin } = useAuth();
+  const { isSuperadmin, user: currentUser } = useAuth();
 
   const { data: users, isLoading } = useQuery({
     queryKey: ['users'],
@@ -107,7 +107,16 @@ export default function ManageUsers() {
             <tbody>
               {users.map((user) => (
                 <tr key={user.id} className="border-b hover:bg-gray-50">
-                  <td className="py-3 px-4 font-medium">{user.name}</td>
+                  <td className="py-3 px-4">
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium">{user.name}</span>
+                      {currentUser?.id === user.id && (
+                        <span className="bg-primary-100 text-primary-700 text-xs font-semibold px-2 py-0.5 rounded">
+                          You
+                        </span>
+                      )}
+                    </div>
+                  </td>
                   <td className="py-3 px-4">{user.email}</td>
                   <td className="py-3 px-4">
                     <span className={`badge ${

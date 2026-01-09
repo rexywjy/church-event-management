@@ -3,6 +3,7 @@ import cors from '@fastify/cors';
 import jwt from '@fastify/jwt';
 import dotenv from 'dotenv';
 import { authenticate, requireRole } from './middleware/auth.js';
+import { initSuperadmin } from './services/initSuperadmin.js';
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
 import adminRoutes from './routes/admin.js';
@@ -55,6 +56,8 @@ const start = async () => {
     
     console.log(`🚀 Server running on http://${host}:${port}`);
     console.log(`📝 Health check: http://${host}:${port}/health`);
+    
+    await initSuperadmin();
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);
